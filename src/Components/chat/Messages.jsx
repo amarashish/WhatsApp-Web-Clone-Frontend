@@ -13,7 +13,6 @@ const Messages = ({ person, conversation, reloadMessages }) => {
         const getMessageDetails = async () => {
             const data = await getAllMessages(conversation._id);
             setMessages(data);
-            console.log("these are all the messages between the looged and clicked user", data);
         }
         conversation && getMessageDetails();
     }, [person._id, conversation, reloadMessages]);

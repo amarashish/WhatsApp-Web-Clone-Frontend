@@ -2,16 +2,13 @@ import { Box, Typography, styled } from "@mui/material";
 import { AccountContext } from "../../Context/AccountProvider";
 import { useContext } from "react";
 import { setConversation } from "../../Service/api";
+import { BASE_URL } from "../../Constants/BaseUrl";
 
 const Logo = styled("img")({
-    height: "50px",
-    width: "50px",
+    height: "45px",
+    width: "45px",
     borderRadius: "50%"
 });
-
-// const BASE_URL = "https://whatsapp-web-clone-7gg7.onrender.com"; 
-const BASE_URL = "http://localhost:8000"
-
 
 
 const Conversation = ({ user, picture }) => {

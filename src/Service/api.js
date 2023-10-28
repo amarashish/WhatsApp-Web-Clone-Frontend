@@ -1,13 +1,5 @@
 import axios from "axios";
-// import dotenv from "dotenv";
-
-// dotenv.config();
-
-// const url = process.env.BASE_URL;
-
-const BASE_URL = "http://localhost:8000"
-
-// const BASE_URL = "https://whatsapp-web-clone-7gg7.onrender.com"; 
+import { BASE_URL } from "../Constants/BaseUrl.js";
 
 
 export const addUser = async (data)=>{

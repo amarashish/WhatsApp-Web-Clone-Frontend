@@ -7,16 +7,13 @@ import InfoDrawer from "../chat/InfoDrawer";
 import BasicMenu from "../chat/BasicMenu";
 import { AccountContext } from "../../Context/AccountProvider.jsx";
 import { getProfilePic } from "../../Service/api";
+import { BASE_URL } from "../../Constants/BaseUrl";
 
 
 const Logo = styled("img")({
-  height: 45,
-  width: 45
+  height: "42px",
+  width: "42px"
 });
-
-
-// const BASE_URL = "https://whatsapp-web-clone-7gg7.onrender.com"; 
-const BASE_URL = "http://localhost:8000"
 
 
 const LeftPaneHeader = () => {

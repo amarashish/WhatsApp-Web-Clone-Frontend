@@ -4,11 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useContext, useEffect, useState } from "react";
 import { updateProfile } from "../../Service/api";
 import { AccountContext } from "../../Context/AccountProvider";
-
-
-// const BASE_URL = "https://whatsapp-web-clone-7gg7.onrender.com"; 
-const BASE_URL = "http://localhost:8000"
-
+import { BASE_URL } from "../../Constants/BaseUrl";
 
 const Logo = styled("img")({
     height: "200px",
@@ -52,7 +48,7 @@ const BigProfile = ({currentUser, setCurrentUser})=>{
             </label>
             <input
               type="file"
-              accept="image/*"
+              accept=".png, .jpg, .jpeg"
               id="fileInput"
               style={{ display: "none" }}
               onChange={(e)=> setProfilePicture(e.target.files[0])}
