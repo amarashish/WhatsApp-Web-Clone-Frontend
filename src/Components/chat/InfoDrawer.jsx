@@ -18,10 +18,9 @@ const drawerStyle = {
 };
 
 
-const InfoDrawer = (props) => {
+const InfoDrawer = ({ open, setOpen}) => {
 
-  const { account } = useContext(AccountContext);
-  const { open, setOpen } = props;
+  const { account, picture} = useContext(AccountContext);
 
   const [isClickedName, setisClikedName] = useState(false);
   const [isClickedAbout, setisClikedAbout] = useState(false);
@@ -76,7 +75,7 @@ const InfoDrawer = (props) => {
 
       <BigProfile
         currentUser={currentUser}
-        account={account}
+        setCurrentUser={setCurrentUser}
       />
 
       <Box

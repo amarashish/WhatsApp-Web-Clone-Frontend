@@ -1,8 +1,13 @@
 import { Box } from "@mui/material"
 import styled from "@emotion/styled";
 import EditIcon from '@mui/icons-material/Edit';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { updateProfile } from "../../Service/api";
+import { AccountContext } from "../../Context/AccountProvider";
+
+
+// const BASE_URL = "https://whatsapp-web-clone-7gg7.onrender.com"; 
+const BASE_URL = "http://localhost:8000"
 
 
 const Logo = styled("img")({
@@ -11,7 +16,9 @@ const Logo = styled("img")({
     borderRadius: "50%"
   });
 
-const BigProfile = ({currentUser, account})=>{
+const BigProfile = ({currentUser, setCurrentUser})=>{
+
+  const {picture, setPicture} = useContext(AccountContext);
 
   const [profilePicture, setProfilePicture] = useState(null);
 
@@ -21,21 +28,21 @@ const BigProfile = ({currentUser, account})=>{
         const data = new FormData();
         data.append("file", profilePicture);
         
-        const response = await updateProfile({sub: account.sub, image: data});
-        const path = response.data.path;
-        // console.log("This is current user", currentUser);
-        console.log("this is path", path);
+        const response = await updateProfile({sub: currentUser.sub, image: data});
+        const URL = response.data.path;
+
+        setPicture(URL);
     }
     profilePicture && setProfile();
-}, [profilePicture,account]);
+}, [profilePicture]);
 
     return (
         <Box
           style={{ textAlign: "center", padding: "20px 0" }}
         >
           <Logo
-            src={currentUser.picture}
-            alt="#"
+            src={picture ? `${BASE_URL}/profile/${currentUser.sub}` : currentUser.picture}
+            alt=""
           />
           <Box >
             <label htmlFor="fileInput">

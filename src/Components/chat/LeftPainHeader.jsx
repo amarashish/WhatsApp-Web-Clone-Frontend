@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { styled, Box } from "@mui/material";
 import PeopleIcon from "@mui/icons-material/People";
 import ChatIcon from "@mui/icons-material/Chat";
@@ -6,28 +6,45 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import InfoDrawer from "../chat/InfoDrawer";
 import BasicMenu from "../chat/BasicMenu";
 import { AccountContext } from "../../Context/AccountProvider.jsx";
+import { getProfilePic } from "../../Service/api";
 
 
 const Logo = styled("img")({
-  height: 40,
+  height: 45,
+  width: 45
 });
+
+
+// const BASE_URL = "https://whatsapp-web-clone-7gg7.onrender.com"; 
+const BASE_URL = "http://localhost:8000"
+
 
 const LeftPaneHeader = () => {
 
+  const {picture, setPicture, account} = useContext(AccountContext);
+
   const [openDrawer, setOpenDrawer] = useState(false);
-  const { account} = useContext(AccountContext);
   const handleClick = () => {
     setOpenDrawer(true);
   };
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const response = await getProfilePic(account.sub);
+      console.log(response.data);
+      setPicture(response.data);
+    }
+    account && getProfile();
+  }, [account, setPicture])
 
   return (
     <Box className="left-pane-header">
       <Box>
         <Logo
           onClick={handleClick}
-          src={account.picture}
+          src={picture ? `${BASE_URL}/profile/${account.sub}`: account.picture }
           alt=""
-          style={{ position: "relative", top: "2px", left: "5px", borderRadius: "50%" }}
+          style={{ position: "relative", top: "2px", left: "7px", borderRadius: "50%" }}
         />
         <InfoDrawer open={openDrawer} setOpen={setOpenDrawer} />
       </Box>

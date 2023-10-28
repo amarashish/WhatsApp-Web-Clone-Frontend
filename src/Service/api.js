@@ -89,9 +89,13 @@ export const uploadFile = async (data)=>{
 }
 export const updateProfile = async (data)=>{
     try{
-        const {sub, image} = data
+        const {sub, image} = data;
         return await axios.post(`${BASE_URL}/upload/${sub}`, image);
     }catch(err){
         console.log("Error While calling uploadProfile API", err.message);
     }
+}
+
+export const getProfilePic = async (id)=>{
+    return await axios.get(`${BASE_URL}/profile/${id}`);
 }

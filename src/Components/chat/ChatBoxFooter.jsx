@@ -2,18 +2,23 @@ import AddIcon from '@mui/icons-material/Add';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import MoodIcon from '@mui/icons-material/Mood';
 import { Box, InputBase } from "@mui/material";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { uploadFile } from '../../Service/api';
 
 const ChatBoxFooter = ({ message, sendText, setMessage, file, setFile }) => {
 
-    useEffect(() => {
-        const setImage = async () => {
+    const [path, setPath] = useState('');
 
+    useEffect(() => {
+
+        const setImage = async () => {
             const data = new FormData();
+            data.append("name", file.name);
             data.append("file", file);
 
-            await uploadFile(data);
+            const response = await uploadFile(data);
+            console.log(response.path);
+            setPath(response.path);
         }
         file && setImage();
     }, [file])

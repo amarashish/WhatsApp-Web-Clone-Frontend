@@ -23,9 +23,7 @@ const UsersChat = ({ text }) => {
         const fetchData = async () => {
             const response = await getUsers();
 
-            console.log("These are all Users", response);
-
-            const filterData = response.filter((user) => user.name.toLowerCase().includes(text.toLowerCase())); /* && user.name !== account.name */
+            const filterData = response.filter((user) => user.name.toLowerCase().includes(text.toLowerCase())); //&& user.name !== account.name
             setUsers(filterData);
         };
         fetchData();
