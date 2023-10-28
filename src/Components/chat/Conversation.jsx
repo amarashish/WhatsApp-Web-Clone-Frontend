@@ -11,12 +11,12 @@ const Logo = styled("img")({
 });
 
 
-const Conversation = ({ user, picture }) => {
+const Conversation = ({ user }) => {
 
-    const {setPerson, account} = useContext(AccountContext);
+    const { setPerson, account } = useContext(AccountContext);
 
-    const createUserChat = async()=> { 
-        await setConversation({senderId: account.sub, receiverId: user.sub});
+    const createUserChat = async () => {
+        await setConversation({ senderId: account.sub, receiverId: user.sub });
         setPerson(user);
     }
     return (

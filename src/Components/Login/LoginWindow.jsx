@@ -18,10 +18,9 @@ const LoginWindow = () => {
           })
           .then(res => res.data);
 
-        let userInfo = {
-          ...data,
-          about: "Write something about yourself"
-        }
+          const userInfo = Object.assign({}, 
+            { sub: data.sub, name: data.name, picture: data.picture, email: data.email, about: "Write something about yourself", phone: ""}
+          );
 
         const user = await addUser(userInfo);
         // console.log("This is the updated user", user.data);

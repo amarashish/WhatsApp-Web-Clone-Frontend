@@ -20,7 +20,7 @@ const drawerStyle = {
 
 const InfoDrawer = ({ open, setOpen}) => {
 
-  const { account, picture} = useContext(AccountContext);
+  const { account} = useContext(AccountContext);
 
   const [isClickedName, setisClikedName] = useState(false);
   const [isClickedAbout, setisClikedAbout] = useState(false);
@@ -73,10 +73,7 @@ const InfoDrawer = ({ open, setOpen}) => {
         handleClose={handleClose}
       />
 
-      <BigProfile
-        currentUser={currentUser}
-        setCurrentUser={setCurrentUser}
-      />
+      <BigProfile/>
 
       <Box
         style={{ backgroundColor: '#f0f2f5', height: '96%' }}

@@ -11,20 +11,22 @@ const Logo = styled("img")({
     width: "42px",
     borderRadius: "50%",
     marginRight: "15px"
-  });
+});
 
 const ChatBoxHeader = () => {
+
     const { person } = useContext(AccountContext);
+
     return (
         <Box className="left-pane-header">
-            <Box style={{display: "flex", alignItems:"center"}}>
-            <Logo src={person.picture.includes("uploads") ? `${BASE_URL}/profile/${person.sub}`: person.picture} alt="" />
-            <Typography>{person.name}</Typography>
+            <Box style={{ display: "flex", alignItems: "center" }}>
+                <Logo src={person.picture.includes("uploads") ? `${BASE_URL}/profile/${person.sub}` : person.picture} alt="" />
+                <Typography>{person.name}</Typography>
             </Box>
-            <Box style={{width:"12%",padding:"10px", display:"flex", justifyContent:"space-between", marginRight:"20px"}}>
-                <VideocamIcon/>
-                <SearchIcon/>
-                <MoreVertIcon/>
+            <Box style={{ width: "12%", padding: "10px", display: "flex", justifyContent: "space-between", marginRight: "20px" }}>
+                <VideocamIcon />
+                <SearchIcon />
+                <MoreVertIcon />
             </Box>
         </Box>
     )

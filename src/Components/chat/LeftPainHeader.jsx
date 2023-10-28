@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { styled, Box } from "@mui/material";
 import PeopleIcon from "@mui/icons-material/People";
 import ChatIcon from "@mui/icons-material/Chat";
@@ -6,9 +6,8 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import InfoDrawer from "../chat/InfoDrawer";
 import BasicMenu from "../chat/BasicMenu";
 import { AccountContext } from "../../Context/AccountProvider.jsx";
-import { getProfilePic } from "../../Service/api";
+import { ImageContext } from "../../Context/ImageProvider";
 import { BASE_URL } from "../../Constants/constants";
-
 
 const Logo = styled("img")({
   height: "42px",
@@ -18,28 +17,21 @@ const Logo = styled("img")({
 
 const LeftPaneHeader = () => {
 
-  const {picture, setPicture, account} = useContext(AccountContext);
+  const {account} = useContext(AccountContext);
+  const {imageUrl} = useContext(ImageContext)
 
   const [openDrawer, setOpenDrawer] = useState(false);
+
   const handleClick = () => {
     setOpenDrawer(true);
   };
-
-  useEffect(() => {
-    const getProfile = async () => {
-      const response = await getProfilePic(account.sub);
-      console.log(response.data);
-      setPicture(response.data);
-    }
-    account && getProfile();
-  }, [account, setPicture])
 
   return (
     <Box className="left-pane-header">
       <Box>
         <Logo
           onClick={handleClick}
-          src={picture ? `${BASE_URL}/profile/${account.sub}`: account.picture }
+          src={imageUrl.includes("uploads") ? `${BASE_URL}/profile/${account.sub}`: imageUrl }
           alt=""
           style={{ position: "relative", top: "2px", left: "7px", borderRadius: "50%" }}
         />

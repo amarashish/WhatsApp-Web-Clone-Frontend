@@ -21,13 +21,17 @@ const UsersChat = ({ text }) => {
     // to get all the users stored in DB or based on the search.
     useEffect(() => {
         const fetchData = async () => {
+            try{
             const response = await getUsers();
 
-            const filterData = response.filter((user) => user.name.toLowerCase().includes(text.toLowerCase())); //&& user.name !== account.name
+            const filterData = response.filter((user) => user.name.toLowerCase().includes(text.toLowerCase()) && user.name !== account.name); 
             setUsers(filterData);
+            }catch(error){
+                console.log("Could not connect to database");
+            }
         };
         fetchData();
-    }, [text]);
+    }, [text, account]);
 
 
     // to get all the conversation of the logged in user.
