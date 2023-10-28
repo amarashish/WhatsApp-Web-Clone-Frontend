@@ -7,7 +7,7 @@ import InfoDrawer from "../chat/InfoDrawer";
 import BasicMenu from "../chat/BasicMenu";
 import { AccountContext } from "../../Context/AccountProvider.jsx";
 import { getProfilePic } from "../../Service/api";
-import { BASE_URL } from "../../Constants/BaseUrl";
+import { BASE_URL } from "../../Constants/constants";
 
 
 const Logo = styled("img")({

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL } from "../Constants/BaseUrl.js";
+import { BASE_URL } from "../Constants/constants.js";
 
 
 export const addUser = async (data)=>{

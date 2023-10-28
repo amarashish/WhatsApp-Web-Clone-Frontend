@@ -2,7 +2,7 @@ import { Box, Typography, styled } from "@mui/material";
 import { AccountContext } from "../../Context/AccountProvider";
 import { useContext } from "react";
 import { setConversation } from "../../Service/api";
-import { BASE_URL } from "../../Constants/BaseUrl";
+import { BASE_URL } from "../../Constants/constants";
 
 const Logo = styled("img")({
     height: "45px",

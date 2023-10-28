@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import VideocamIcon from '@mui/icons-material/Videocam';
 import { useContext } from "react";
 import { AccountContext } from "../../Context/AccountProvider";
-import { BASE_URL } from "../../Constants/BaseUrl";
+import { BASE_URL } from "../../Constants/constants";
 
 const Logo = styled("img")({
     height: "42px",

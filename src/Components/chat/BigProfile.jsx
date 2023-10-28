@@ -4,7 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useContext, useEffect, useState } from "react";
 import { updateProfile } from "../../Service/api";
 import { AccountContext } from "../../Context/AccountProvider";
-import { BASE_URL } from "../../Constants/BaseUrl";
+import { BASE_URL } from "../../Constants/constants";
 
 const Logo = styled("img")({
     height: "200px",
