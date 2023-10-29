@@ -19,7 +19,7 @@ input:focus {
 }
 
 .header-logo {
-  margin-left: 15.5%;
+  margin: 1% 16.5%;
   display: flex;
   padding: 10px;
 }
@@ -55,10 +55,9 @@ input:focus {
 
 .login-card {
   background-color: #ffffff;
-  padding: 45px 60px 60px 64px;
   margin: auto;
   height: 96%;
-  width: 60%;
+  width: 65%;
   max-width: 100%;
   max-height: 100%;
   position: relative;
@@ -66,34 +65,31 @@ input:focus {
 }
 
 .get-whatapp-windows {
+  align-self: center;
   align-items: center;
   flex-grow: 0;
   border: 1px solid #b1c1cc;
-  margin: 0 0 30px;
+  margin: 0 0 40px 0;
   border-radius: 6px;
   padding: 24px 40px;
   display: flex;
-  justify-content: space-between;
-  width: 85%;
-  margin-left: 6%;
+  justify-content: space-around;
+  width: 90%;
 }
 
 .get-whatapp-windows-content {
   font-weight: 300;
   font-family: inherit;
   line-height: 1.5;
+  color: #54656f;
+  font: inherit;
 }
 
-.QRCode {
-  margin: 0 0 0 50px;
-  height: 264;
-  width: 264;
-}
 
 .login-window {
   position: relative;
-  bottom: 45%;
-  left: 27%;
+  bottom: 50%;
+  left: 7%;
 }
 
 .link-with-phone {
@@ -111,7 +107,7 @@ input:focus {
   flex-direction: column;
   align-items: center;
   line-height: 4;
-  padding: 35px 0 0 0;
+  padding: 40px 0;
 }
 
 .need-help {
@@ -123,11 +119,11 @@ input:focus {
 }
 
 .guide-list {
-  padding: 0;
+  padding-left: 0;
   margin: 15px 0 0 0;
   font-size: 18px;
   line-height: 28px;
-  color: #4a4a4a;
+  color:"#3b4a54"
 }
 
 .guide-list-title {

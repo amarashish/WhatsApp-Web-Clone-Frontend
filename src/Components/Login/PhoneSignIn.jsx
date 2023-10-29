@@ -10,7 +10,7 @@ import { Dialog } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 
 
-const PhoneSingIn = ({ click, setClick }) => {
+const PhoneSingIn = ({ click }) => {
 
     const { setAccount } = useContext(AccountContext);
 
@@ -20,6 +20,8 @@ const PhoneSingIn = ({ click, setClick }) => {
     const [display, setDisplay] = useState("none");
 
     const sendOtp = async () => {
+        document.getElementById('11').innerHTML = "Otp Sent!";
+        document.getElementById('11').style.background = "black";
         try {
             setDisplay("block");
             const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {});
@@ -31,6 +33,8 @@ const PhoneSingIn = ({ click, setClick }) => {
     }
 
     const verifyOtp = async () => {
+        document.getElementById('13').innerHTML = "Verifying...";
+        document.getElementById('13').style.background = "black";
         try {
             await user.confirm(otp);
 
@@ -52,12 +56,18 @@ const PhoneSingIn = ({ click, setClick }) => {
             console.log("Could not verfity Otp ", error.message);
         }
     }
+
+    const changeHTML = ()=>{
+        document.getElementById('14').style.display = "none";
+    }
+
     return (
         <Dialog
             className="login-with-phone-window"
             open={click}
+            id="14"
         >
-            <CloseIcon onClick={()=> setClick(false)} style={{ alignSelf: "end", margin: "15px 20px 0 0", cursor:"pointer" }} />
+            <CloseIcon id="15" onClick={changeHTML} style={{ alignSelf: "end", margin: "15px 20px 0 0", cursor:"pointer" }} />
             <div className="otp-send-verify-window">
                 <div
                     style={{ display: "flex" }}>
@@ -69,16 +79,16 @@ const PhoneSingIn = ({ click, setClick }) => {
                         />
                     </div>
                     <div>
-                        <button onClick={sendOtp} className="send-verify-otp-btn">Send OTP</button>
+                        <button id="11" onClick={sendOtp} className="send-verify-otp-btn">Send OTP</button>
                     </div>
                 </div>
                 <div style={{ marginLeft: "20px", display: "flex" }}>
                     <div id="recaptcha" />
-                    <div className="captcha-verify-notice" style={{ display: display }}><span>Verfity captcha to get otp</span></div>
+                    <div className="captcha-verify-notice" style={{ display: display }}><span id="12">Verfity captcha to get otp</span></div>
                 </div>
                 <div style={{ display: "flex" }}>
                     <input onChange={(e) => setOtp(e.target.value)} type="text" placeholder="Enter Otp" className="enter-phone-otp-field" />
-                    <button onClick={verifyOtp} className="send-verify-otp-btn">Verify Otp</button>
+                    <button onClick={verifyOtp} className="send-verify-otp-btn" id="13">Verify Otp</button>
                 </div>
             </div>
         </Dialog>

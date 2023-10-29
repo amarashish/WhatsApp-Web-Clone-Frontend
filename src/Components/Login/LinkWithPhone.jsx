@@ -7,8 +7,9 @@ const LinkWithPhone = () => {
 
   return (
 
-    <div onClick={() => setClick(true)} style={{ margin: "50px 0 50px 0", width: "100%" }}>
-      <Typography style={{ color: "green", cursor:"pointer"}}>
+    <div onClick={() => setClick(true)} 
+    >
+      <Typography style={{ color: "rgb(0, 113, 92)", cursor:"pointer", fontSize:"20px"}}>
         Link with phone number
       </Typography>
         <PhoneSingIn click={click} setClick={setClick}/>

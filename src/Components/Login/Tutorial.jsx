@@ -3,7 +3,7 @@ import {Box, Typography} from '@mui/material'
 const Tutorial = ()=>{
     return (
         <Box className="tutorial-area">
-        <Typography variant="h5">Tutorail</Typography>
+        <Typography variant="h5" style={{color:"#41525d", fonstSize: "28px"}}>Tutorial</Typography>
         <a
           className="need-help"
           href="https://faq.whatsapp.com/1317564962315842/?cms_platform=web&lang=en"

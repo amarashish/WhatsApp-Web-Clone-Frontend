@@ -6,16 +6,19 @@ import Tutorial from "../Login/Tutorial";
 import LinkWithPhone from "../Login/LinkWithPhone";
 import GetWhatsApp from "../Login/GetWhatsAppWindow";
 
-const LoginDialog = ({setLogin}) => {
+const LoginDialog = ({ setLogin }) => {
   return (
     <Card className="login-card">
-      <GetWhatsApp />
-      <Box style={{ display: "flex", justifyContent: "space-between" }}>
-        <UserGuide />
-        <QRCode setLogin={setLogin}/>
-      </Box>
-      <hr style={{ color: "#b1c1cc", margin: "25px 0" }} />
-      <LinkWithPhone />
+      <div style={{ padding: "50px 65px 0" }}>
+        <div style={{ paddingBottom: "50px", borderBottom: " 1px solid #e9edef" }}>
+          <GetWhatsApp />
+          <Box style={{ display: "flex", justifyContent: "space-between" }}>
+            <UserGuide />
+            <QRCode setLogin={setLogin} />
+          </Box>
+        </div>
+      </div>
+      <div style={{ padding: "55px 65px"  }}><LinkWithPhone /></div>
       <Tutorial />
     </Card>
   );

@@ -40,7 +40,7 @@ const LoginWindow = () => {
 
 
   return (
-    <Button variant="contained" style={{ backgroundColor: "#00715c" }} className="login-window" onClick={googleLogin}>
+    <Button variant="contained" style={{ backgroundColor: "#00715c", width:"200px" }} onClick={googleLogin}>
       Sign In With Google
     </Button>
   );
