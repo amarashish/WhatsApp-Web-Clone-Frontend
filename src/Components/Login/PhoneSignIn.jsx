@@ -74,7 +74,7 @@ const PhoneSingIn = ({ click, setClick }) => {
                 </div>
                 <div style={{ marginLeft: "20px", display: "flex" }}>
                     <div id="recaptcha" />
-                    <div style={{ display: display, padding: "18px 8px", marginLeft: "20px", width: "100px", textAlign: "center", color: "red", borderRadius: "5px" }}><span>Verfity captcha to get otp</span></div>
+                    <div className="captcha-verify-notice" style={{ display: display }}><span>Verfity captcha to get otp</span></div>
                 </div>
                 <div style={{ display: "flex" }}>
                     <input onChange={(e) => setOtp(e.target.value)} type="text" placeholder="Enter Otp" className="enter-phone-otp-field" />

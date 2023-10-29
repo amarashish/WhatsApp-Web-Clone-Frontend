@@ -326,3 +326,12 @@ input:focus {
   width: 300px;
   outline: none;
 }
+
+.captcha-verify-notice {
+  padding: 18px 8px;
+  margin-left: 20px;
+  width: 100px;
+  text-align: center;
+  color: red;
+  border-radius: 5px
+}
