@@ -24,9 +24,9 @@ const ChatBoxHeader = () => {
                 <Typography>{person.name}</Typography>
             </Box>
             <Box style={{ width: "12%", padding: "10px", display: "flex", justifyContent: "space-between", marginRight: "20px" }}>
-                <VideocamIcon />
-                <SearchIcon />
-                <MoreVertIcon />
+                <VideocamIcon style={{color:"#54656f"}}/>
+                <SearchIcon style={{color:"#54656f"}}/>
+                <MoreVertIcon style={{color:"#54656f"}}/>
             </Box>
         </Box>
     )

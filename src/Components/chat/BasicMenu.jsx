@@ -16,7 +16,7 @@ export default function BasicMenu() {
   return (
     <div>
       <MoreVertIcon
-        style={{position:'relative', bottom:'2px'}}
+        style={{position:'relative', top:"1.4px", color:"#54656f"}}
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}

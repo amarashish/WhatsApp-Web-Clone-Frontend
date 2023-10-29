@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { styled, Box } from "@mui/material";
-import PeopleIcon from "@mui/icons-material/People";
-import ChatIcon from "@mui/icons-material/Chat";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import DataUsageIcon from '@mui/icons-material/DataUsage';
+import ForumIcon from '@mui/icons-material/Forum';
 import InfoDrawer from "../chat/InfoDrawer";
 import BasicMenu from "../chat/BasicMenu";
 import { AccountContext } from "../../Context/AccountProvider.jsx";
@@ -14,6 +14,7 @@ const Logo = styled("img")({
   width: "42px"
 });
 
+const style = {color:"#54656f"};
 
 const LeftPaneHeader = () => {
 
@@ -38,10 +39,10 @@ const LeftPaneHeader = () => {
         <InfoDrawer open={openDrawer} setOpen={setOpenDrawer} />
       </Box>
       <Box className="header-icons">
-        <PeopleIcon />
-        <AccessTimeIcon />
-        <ChatIcon />
-        <BasicMenu />
+        <GroupAddIcon style={style}/>
+        <DataUsageIcon style={style}/>
+        <ForumIcon style={style}/>
+        <BasicMenu style={style}/>
       </Box>
     </Box>
   );

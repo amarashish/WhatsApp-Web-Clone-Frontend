@@ -40,7 +40,7 @@ const ChatBoxFooter = ({ message, sendText, setMessage, file, setFile }) => {
                 onChange={onFileChange}
             />
             <Box style={{ display: "flex", padding: "5px 10px", background: "#ffff", width: "90%", borderRadius: "10px" }}>
-                <MoodIcon style={{ alignSelf: "center" }} />
+                <MoodIcon style={{ alignSelf: "center", color:"#54656f"}} />
                 <InputBase
                     onChange={(e) => setMessage(e.target.value)}
                     onKeyDown={sendText}
@@ -49,7 +49,7 @@ const ChatBoxFooter = ({ message, sendText, setMessage, file, setFile }) => {
                     value={message}
                 />
             </Box>
-            <KeyboardVoiceIcon />
+            <KeyboardVoiceIcon style={{color:"#54656f"}}/>
         </Box>
     )
 }

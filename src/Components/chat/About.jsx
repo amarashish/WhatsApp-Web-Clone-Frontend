@@ -5,9 +5,9 @@ import DoneIcon from '@mui/icons-material/Done';
 const About = ({isClickedAbout, currentUser, handleAboutChange, handleClickAbout})=>{
     return (
         <Box
-          style={{ backgroundColor: "#ffffff", display: "flex", justifyContent: "space-between", padding: "10px 15px" }}>
+          style={{ backgroundColor: "#ffffff", display: "flex", justifyContent: "space-between", padding: "10px 25px", boxShadow: "0 4px 8px rgba(0.0, 0.0, 0.0, 0.2)" }}>
           <Box style={{ width: "90%" }}>
-            <Typography>About</Typography>
+            <Typography style={{color:"#008069", marginBottom:"15px"}}>About</Typography>
             {isClickedAbout ? (
               <Input
                 value={currentUser.about}

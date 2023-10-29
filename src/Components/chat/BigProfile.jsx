@@ -37,7 +37,7 @@ const BigProfile = () => {
 
   return (
     <Box
-      style={{ textAlign: "center", padding: "20px 0" }}
+      style={{ textAlign: "center", padding: "20px 0", background:"rgb(240, 242, 245)"}}
     >
       <Logo
         src={imageUrl.includes("uploads") ? `${BASE_URL}/profile/${account.sub}` : imageUrl}

@@ -1,4 +1,4 @@
-import { Drawer, Box, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const CloseDialog = ({handleClose})=>{

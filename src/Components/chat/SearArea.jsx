@@ -1,5 +1,5 @@
 import SearchIcon from "@mui/icons-material/Search";
-import ArchiveIcon from "@mui/icons-material/Archive";
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { Box } from '@mui/material'
 
 const SearchArea = ({ setText }) => {
@@ -7,7 +7,7 @@ const SearchArea = ({ setText }) => {
   return (
     <Box className="search-box-main-div">
       <Box className="search-box-div">
-        <SearchIcon style={{ margin: "0 10px" }} />
+        <SearchIcon style={{ margin: "0 10px", color:"#54656f" , height:"85%", alignSelf:"center"}} />
         <input
           className="search-chat"
           type="text"
@@ -15,7 +15,7 @@ const SearchArea = ({ setText }) => {
           onChange={(e) => setText(e.target.value)}
         />
       </Box>
-      <ArchiveIcon className='archive-unread-chat' />
+      <FilterListIcon className='archive-unread-chat'/>
     </Box>
   )
 }

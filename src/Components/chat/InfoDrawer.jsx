@@ -9,12 +9,14 @@ import Name from "./Name.jsx";
 import Mid from "./Mid.jsx";
 import About from "./About.jsx";
 
+
 const drawerStyle = {
   left: 20,
   top: 22,
   bottom: 30,
-  boxShadow: "none",
-  maxWidth: '440px',
+  maxWidth: "28.5%",
+  maxHeight: "95%",
+  overflowX: "hidden"
 };
 
 
@@ -90,8 +92,6 @@ const InfoDrawer = ({ open, setOpen}) => {
           currentUser={currentUser}
           handleAboutChange={handleAboutChange}
           handleClickAbout={handleClickAbout} />
-
-        <hr />
       </Box>
     </Drawer>
   );
