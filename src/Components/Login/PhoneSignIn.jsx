@@ -9,13 +9,14 @@ import { auth } from "./firebase/firebaseAuth";
 import { Dialog } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 
-const PhoneSingIn = ({ click }) => {
+const PhoneSingIn = ({ click, setClick }) => {
 
     const { setAccount } = useContext(AccountContext);
 
     const [phone, setPhone] = useState("");
     const [user, setUser] = useState("");
     const [otp, setOtp] = useState("");
+
     const [display, setDisplay] = useState("none");
 
     const sendOtp = async () => {
@@ -56,17 +57,16 @@ const PhoneSingIn = ({ click }) => {
         }
     }
 
-    const changeHTML = ()=>{
-        document.getElementById('14').style.display = "none";
+    const changeHTML = () => {
+        setClick(false);
     }
 
     return (
         <Dialog
             className="login-with-phone-window"
             open={click}
-            id="14"
         >
-            <CloseIcon id="15" onClick={changeHTML} style={{ alignSelf: "end", margin: "15px 20px 0 0", cursor:"pointer" }} />
+            <CloseIcon id="15" onClick={changeHTML} style={{ alignSelf: "end", margin: "15px 20px 0 0", cursor: "pointer" }} />
             <div className="otp-send-verify-window">
                 <div
                     style={{ display: "flex" }}>

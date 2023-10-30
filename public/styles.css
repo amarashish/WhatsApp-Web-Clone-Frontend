@@ -12,6 +12,10 @@ input:focus {
   outline: none;
 }
 
+input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
 .main-box {
   margin: 0;
   border: 0;

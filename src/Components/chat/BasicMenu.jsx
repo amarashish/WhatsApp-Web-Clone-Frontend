@@ -1,17 +1,32 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { AccountContext } from "../../Context/AccountProvider";
 
-export default function BasicMenu() {
+export default function BasicMenu({setOpenDrawer}) {
+
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const {setAccount} = useContext(AccountContext);
+
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
-    setAnchorEl(null);
   };
+  
+  const handleProfileClick = ()=>{
+    setAnchorEl(null);
+    setOpenDrawer(true);
+  }
+  
+  const handleLogoutClick = ()=>{
+    setAccount(null);
+  }
 
   return (
     <div>
@@ -33,11 +48,11 @@ export default function BasicMenu() {
           horizontal: 'right'
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>Settingst</MenuItem>
         <MenuItem onClick={handleClose}>New Group</MenuItem>
         <MenuItem onClick={handleClose}>Starred messages</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
       </Menu>
     </div>
   );

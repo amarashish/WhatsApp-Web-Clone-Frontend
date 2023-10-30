@@ -5,7 +5,6 @@ import DataUsageIcon from '@mui/icons-material/DataUsage';
 import ForumIcon from '@mui/icons-material/Forum';
 import InfoDrawer from "../chat/InfoDrawer";
 import BasicMenu from "../chat/BasicMenu";
-import { AccountContext } from "../../Context/AccountProvider.jsx";
 import { ImageContext } from "../../Context/ImageProvider";
 
 const Logo = styled("img")({
@@ -40,7 +39,7 @@ const LeftPaneHeader = () => {
         <GroupAddIcon style={style}/>
         <DataUsageIcon style={style}/>
         <ForumIcon style={style}/>
-        <BasicMenu style={style}/>
+        <BasicMenu style={style} setOpenDrawer={setOpenDrawer}/>
       </Box>
     </Box>
   );
