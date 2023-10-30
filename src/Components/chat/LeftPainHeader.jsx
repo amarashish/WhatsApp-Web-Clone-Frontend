@@ -7,7 +7,6 @@ import InfoDrawer from "../chat/InfoDrawer";
 import BasicMenu from "../chat/BasicMenu";
 import { AccountContext } from "../../Context/AccountProvider.jsx";
 import { ImageContext } from "../../Context/ImageProvider";
-import { BASE_URL } from "../../Constants/constants";
 
 const Logo = styled("img")({
   height: "42px",
@@ -18,7 +17,6 @@ const style = {color:"#54656f"};
 
 const LeftPaneHeader = () => {
 
-  const {account} = useContext(AccountContext);
   const {imageUrl} = useContext(ImageContext)
 
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -32,7 +30,7 @@ const LeftPaneHeader = () => {
       <Box>
         <Logo
           onClick={handleClick}
-          src={imageUrl.includes("uploads") ? `${BASE_URL}/profile/${account.sub}`: imageUrl }
+          src={ imageUrl }
           alt=""
           style={{ position: "relative", top: "2px", left: "7px", borderRadius: "50%" }}
         />

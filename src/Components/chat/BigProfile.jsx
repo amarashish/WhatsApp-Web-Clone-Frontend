@@ -2,10 +2,9 @@ import { Box } from "@mui/material"
 import styled from "@emotion/styled";
 import EditIcon from '@mui/icons-material/Edit';
 import { useContext, useEffect, useState } from "react";
-import { updateProfile } from "../../Service/api";
 import { AccountContext } from "../../Context/AccountProvider";
 import { ImageContext } from "../../Context/ImageProvider";
-import { BASE_URL } from "../../Constants/constants";
+import {updateProfile} from "../../Service/api.js";
 
 const Logo = styled("img")({
   height: "200px",
@@ -17,19 +16,23 @@ const BigProfile = () => {
 
   const { account } = useContext(AccountContext);
 
-  const { imageUrl,setImageUrl } = useContext(ImageContext)
+  const { imageUrl, setImageUrl } = useContext(ImageContext)
 
   const [profilePicture, setProfilePicture] = useState(null);
 
   useEffect(() => {
     const setProfile = async () => {
 
-      const data = new FormData();
-      data.append("file", profilePicture);
+      const formData = new FormData();
+      formData.append("file", profilePicture);
 
-      const response = await updateProfile({ sub: account.sub, image: data });
+      const response = await updateProfile({sub: account.sub, picture: formData});
+      const URL = response.data;
+      console.log(URL);
 
-      const URL = response.data.path; //get url for the updated profile
+      // // const response = await updateProfile({ sub: account.sub, image: data });
+      // const URL = response.data.path; //get url for the updated profile
+
       setImageUrl(URL);
     }
     profilePicture && setProfile();
@@ -40,7 +43,7 @@ const BigProfile = () => {
       style={{ textAlign: "center", padding: "20px 0", background:"rgb(240, 242, 245)"}}
     >
       <Logo
-        src={imageUrl.includes("uploads") ? `${BASE_URL}/profile/${account.sub}` : imageUrl}
+        src={imageUrl}
         alt=""
       />
       <Box >

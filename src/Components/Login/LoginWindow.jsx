@@ -20,18 +20,11 @@ const LoginWindow = () => {
 
           const userInfo = Object.assign({}, 
             { sub: data.sub, name: data.name, picture: data.picture, email: data.email, about: "Write something about yourself", phone: ""}
-          );
+            );
 
         const user = await addUser(userInfo);
-        // console.log("This is the updated user", user.data);
-
-        if (user) {
-          // If user is not undefined, set the account
-          setAccount(user.data);
-        } else {
-          // If user is undefined, set the account with the original userInfo
-          setAccount(userInfo);
-        }
+        setAccount(user.data);
+        
       } catch (error) {
         console.error("Error during login:", error.message);
       }

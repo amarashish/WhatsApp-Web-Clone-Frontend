@@ -9,7 +9,6 @@ import { auth } from "./firebase/firebaseAuth";
 import { Dialog } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 
-
 const PhoneSingIn = ({ click }) => {
 
     const { setAccount } = useContext(AccountContext);

@@ -66,8 +66,8 @@ export const getAllMessages = async (id)=>{
     try{
         const response = await axios.get(`${BASE_URL}/messages/getAll/${id}`);
         return response.data;
-    }catch(err){
         
+    }catch(err){
         console.log("Error While calling getMessages API", err.message);
     }
 };
@@ -81,13 +81,19 @@ export const uploadFile = async (data)=>{
 }
 export const updateProfile = async (data)=>{
     try{
-        const {sub, image} = data;
-        return await axios.post(`${BASE_URL}/upload/${sub}`, image);
+        const {sub, picture} = data;
+        return await axios.post(`${BASE_URL}/updateProfile/${sub}`, picture);
     }catch(err){
-        console.log("Error While calling uploadProfile API", err.message);
+        console.log("Error While calling updteProfile API", err.message);
     }
 }
 
-export const getProfilePic = async (id)=>{
-    return await axios.get(`${BASE_URL}/profile/${id}`);
-}
+// export const getProfilePic = async (id)=>{
+//     return await axios.get(`${BASE_URL}/profile/${id}`);
+// }
+
+// export const uploadFileGCS = async(data)=>{
+//     const {sub, picture} = data;
+//     const response = await axios.post(`${BASE_URL}/updateProfile/${sub}`, picture);
+//     return response.data.data;
+// }

@@ -2,7 +2,6 @@ import { Box, Typography, styled } from "@mui/material";
 import { AccountContext } from "../../Context/AccountProvider";
 import { useContext } from "react";
 import { setConversation } from "../../Service/api";
-import { BASE_URL } from "../../Constants/constants";
 
 const Logo = styled("img")({
     height: "45px",
@@ -22,7 +21,7 @@ const Conversation = ({ user }) => {
     return (
         <Box onClick={createUserChat} style={{ display: "flex", alignItem: "flex-start", padding: "0 15px", cursor: "pointer" }}>
             <Box style={{ marginRight: "10px" }}>
-                <Logo src={user.picture.includes("uploads") ? `${BASE_URL}/profile/${user.sub}` : user.picture} alt="" />
+                <Logo src={user.picture} alt="" />
             </Box>
             <Box>
                 <Typography variant="h6">{user.name}</Typography>
