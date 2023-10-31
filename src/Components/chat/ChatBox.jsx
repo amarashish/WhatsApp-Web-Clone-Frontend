@@ -8,15 +8,14 @@ import { newMessage, getConversation, uploadFile } from "../../Service/api";
 
 const ChatBox = () => {
 
-    const { account, person } = useContext(AccountContext);
+    const { account, person, socket, newMessageFlag, setNewMessageFlag } = useContext(AccountContext);
 
-    const [message, setMessage] = useState("");
-
-    const [reloadMessages, setReloadMessages] = useState(false);
+    const [message, setMessage] = useState(""); // typed in input field in chatbob footer
 
     const [conversation, setConversation] = useState({});
 
     const [file, setFile] = useState(null);
+
 
     //to get the conversation id of the conversation between two users
     useEffect(() => {
@@ -33,13 +32,15 @@ const ChatBox = () => {
     const sendText = async (e) => {
         if (e.key === "Enter") {
 
+            if(!file && message.length === 0) // to prevent sending empty message
+                return;
+
             let url = null;
-            if(file){
+            if (file) {
                 const formData = new FormData();
                 formData.append("file", file);
                 const response = await uploadFile(formData);
                 url = response.data;
-                setFile(null);
             }
 
             const currentMessage = {
@@ -49,12 +50,16 @@ const ChatBox = () => {
                 text: message,
                 file: url,
                 size: file && file.size
-            } 
-            setMessage("");
-            await newMessage(currentMessage);
-            setReloadMessages(!reloadMessages);
-        }
+            }
 
+            socket.current.emit('sendMessage', currentMessage); //socket.io sendMessage
+
+            setMessage("");
+            setFile(null);
+
+            await newMessage(currentMessage);
+            setNewMessageFlag(!newMessageFlag);
+        }
     }
 
     return (
@@ -64,9 +69,7 @@ const ChatBox = () => {
 
             <Messages
                 person={person}
-                conversation={conversation} 
-                reloadMessages={reloadMessages}
-                setReloadMessages={setReloadMessages}
+                conversation={conversation}
             />
 
             <ChatBoxFooter

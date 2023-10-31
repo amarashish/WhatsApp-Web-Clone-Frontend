@@ -22,11 +22,11 @@ const Name = ({isClickedName, currentUser, handleNameChange, handleClickName})=>
           {isClickedName ? (
             <DoneIcon
               onClick={handleClickName}
-              style={{ alignSelf: "end" }} />
+              style={{ alignSelf: "end", color:"#54656f" }} />
           ) : (
             <EditIcon
               onClick={handleClickName}
-              style={{ alignSelf: "end" }} />
+              style={{ alignSelf: "end", color:"#54656f" }} />
           )}
         </Box>
     )

@@ -1,7 +1,8 @@
 import { Box, Typography, styled } from "@mui/material";
 import { AccountContext } from "../../Context/AccountProvider";
-import { useContext } from "react";
-import { setConversation } from "../../Service/api";
+import { useContext, useEffect, useState } from "react";
+import { setConversation, getConversation } from "../../Service/api";
+import { formatDate } from "../../Utils/common-utils"
 
 const Logo = styled("img")({
     height: "45px",
@@ -12,20 +13,38 @@ const Logo = styled("img")({
 
 const Conversation = ({ user }) => {
 
-    const { setPerson, account } = useContext(AccountContext);
+    const [message, setMessage] = useState({});
+
+    const { setPerson, account, newMessageFlag } = useContext(AccountContext);
+
+    useEffect(() => {
+        const getConversationDetails = async () => {
+            const data = await getConversation({ senderId: account.sub, receiverId: user.sub });
+            setMessage({ text: data?.message, timeStamp: data?.updatedAt });
+        }
+
+        getConversationDetails();
+    }, [newMessageFlag])
 
     const createUserChat = async () => {
-        await setConversation({ senderId: account.sub, receiverId: user.sub });
-        setPerson(user);
+        await setConversation({ senderId: account.sub, receiverId: user.sub }); //sequence
+        setPerson(user);                                                       // matters
     }
     return (
-        <Box onClick={createUserChat} style={{ display: "flex", alignItem: "flex-start", padding: "0 15px", cursor: "pointer" }}>
-            <Box style={{ marginRight: "10px" }}>
-                <Logo src={user.picture} alt="" />
+        <Box onClick={createUserChat} style={{ display: "flex", justifyContent: "space-between", padding: "0 15px", cursor: "pointer" }}>
+            <Box style={{ display: "flex" }}>
+                <Box style={{ marginRight: "10px" }}>
+                    <Logo src={user.picture} alt="" />
+                </Box>
+                <Box>
+                    <Typography variant="h6">{user.name}</Typography>
+                    {
+                        message &&
+                        <Typography >{!message.text ? "Media" : message.text}</Typography>
+                    }
+                </Box>
             </Box>
-            <Box>
-                <Typography variant="h6">{user.name}</Typography>
-            </Box>
+            <h6 style={{height:"25px", width:"25px", margin:"10px 2px"}}>{message?.timeStamp && formatDate(message?.timeStamp)}</h6>
         </Box>
     )
 }

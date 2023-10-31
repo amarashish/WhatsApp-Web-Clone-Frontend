@@ -50,7 +50,7 @@ const Message = ({ message }) => {
     let type = null, name = null, size = 0, unit = "B";
     const file = () => {
         if (message.file) {
-            if (message.file.toLowerCase().includes("jpg") || message.file.toLowerCase().includes("jpeg") || message.file.toLowerCase().includes("png")) {
+            if (message.file.toLowerCase().includes("jpg") || message.file.toLowerCase().includes("jpeg") || message.file.toLowerCase().includes("png") || message.file.toLowerCase().includes("gif")) {
                 type = "img";
             }
             else {

@@ -30,9 +30,6 @@ const BigProfile = () => {
       const URL = response.data;
       console.log(URL);
 
-      // // const response = await updateProfile({ sub: account.sub, image: data });
-      // const URL = response.data.path; //get url for the updated profile
-
       setImageUrl(URL);
     }
     profilePicture && setProfile();
@@ -50,7 +47,7 @@ const BigProfile = () => {
         <label htmlFor="ProfileChange">
           <EditIcon
             className="upload-btn"
-            style={{ position: "relative", left: "80px", bottom: "30px" }} />
+            style={{ position: "relative", left: "80px", bottom: "32px" }} />
         </label>
         <input
           type="file"

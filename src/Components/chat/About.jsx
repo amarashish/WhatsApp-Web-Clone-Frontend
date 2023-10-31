@@ -20,11 +20,11 @@ const About = ({isClickedAbout, currentUser, handleAboutChange, handleClickAbout
           {isClickedAbout ? (
             <DoneIcon
               onClick={handleClickAbout}
-              style={{ alignSelf: "end" }} />
+              style={{ alignSelf: "end", color:"#54656f" }} />
           ) : (
             <EditIcon
               onClick={handleClickAbout}
-              style={{ alignSelf: "end" }} />
+              style={{ alignSelf: "end", color:"#54656f" }} />
           )}
         </Box>
     )

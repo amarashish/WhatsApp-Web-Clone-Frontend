@@ -5,11 +5,14 @@ import PhoneSingIn from "./PhoneSignIn";
 const LinkWithPhone = () => {
   const [click, setClick] = useState(false);
 
+  const handleClick = ()=>{
+    setClick(true);
+  }
+
   return (
 
-    <div onClick={() => setClick(true)} 
-    >
-      <Typography style={{ color: "rgb(0, 113, 92)", cursor:"pointer", fontSize:"20px"}}>
+    <div >
+      <Typography onClick={handleClick} style={{ color: "rgb(0, 113, 92)", cursor:"pointer", fontSize:"20px"}}>
         Link with phone number
       </Typography>
         <PhoneSingIn click={click} setClick={setClick}/>

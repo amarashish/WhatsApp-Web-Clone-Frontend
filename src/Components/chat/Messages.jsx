@@ -1,14 +1,40 @@
 
 import { Box } from "@mui/material";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import { getAllMessages } from "../../Service/api";
 import Message from "./Message";
+import { AccountContext } from "../../Context/AccountProvider";
 
-const Messages = ({ person, conversation, reloadMessages, setReloadMessages}) => {
+const Messages = ({ person, conversation}) => {
+    
+    const [incomingMessage, setIncomingMessage] = useState(null);
+    
+    const [messages, setMessages] = useState([]);
+    
+    const { socket, newMessageFlag } = useContext(AccountContext);
 
     const chatWindowRef = useRef(null);
 
-    const [messages, setMessages] = useState([]);
+    //To scroll the chat window to the bottom
+    useEffect(() => {
+        const scrollToBottom = () => {
+            if (chatWindowRef.current) {
+              chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+            }
+          };
+        scrollToBottom();
+      }, [messages]);
+
+
+    //socket.io getMessage
+    useEffect(() => {
+        socket.current.on('getMessage', data => {
+            setIncomingMessage({
+                ...data,
+                createdAt: Date.now()
+            })
+        })
+    }, [])
 
     // to get all the messages corresponding to the conversation id
     useEffect(() => {
@@ -17,18 +43,12 @@ const Messages = ({ person, conversation, reloadMessages, setReloadMessages}) =>
             setMessages(data);
         }
         conversation && getMessageDetails();
-    }, [person._id, conversation, reloadMessages]);
+    }, [person._id, conversation, newMessageFlag]);
 
-    // Function to scroll the chat window to the bottom
-    const scrollToBottom = () => {
-        if (chatWindowRef.current) {
-          chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
-        }
-      };
-    
-      useEffect(() => {
-        scrollToBottom();
-      }, [reloadMessages]);
+    useEffect(() => {
+        incomingMessage && conversation?.members?.includes(incomingMessage.senderId) && 
+            setMessages((prev) => [...prev, incomingMessage])
+    }, [incomingMessage, conversation])
 
 
     return (

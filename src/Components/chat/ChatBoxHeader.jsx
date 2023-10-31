@@ -4,7 +4,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import VideocamIcon from '@mui/icons-material/Videocam';
 import { useContext } from "react";
 import { AccountContext } from "../../Context/AccountProvider";
-import { ImageContext } from "../../Context/ImageProvider";
 
 const Logo = styled("img")({
     height: "42px",
@@ -15,13 +14,16 @@ const Logo = styled("img")({
 
 const ChatBoxHeader = () => {
 
-    const { person } = useContext(AccountContext);
+    const { person, activeUsers } = useContext(AccountContext);
 
     return (
         <Box className="left-pane-header">
             <Box style={{ display: "flex", alignItems: "center" }}>
                 <Logo src={person.picture} alt="" />
+                <Box>
                 <Typography>{person.name}</Typography>
+                <Typography>{activeUsers?.find(user => user.sub === person.sub) ? 'online' : 'offline'}</Typography>
+                </Box>
             </Box>
             <Box style={{ width: "12%", padding: "10px", display: "flex", justifyContent: "space-between", marginRight: "20px" }}>
                 <VideocamIcon style={{color:"#54656f"}}/>

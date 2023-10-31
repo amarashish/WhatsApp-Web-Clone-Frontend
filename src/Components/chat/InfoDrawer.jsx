@@ -9,7 +9,6 @@ import Name from "./Name.jsx";
 import Mid from "./Mid.jsx";
 import About from "./About.jsx";
 
-
 const drawerStyle = {
   left: 20,
   top: 22,
@@ -18,7 +17,6 @@ const drawerStyle = {
   maxHeight: "95%",
   overflowX: "hidden"
 };
-
 
 const InfoDrawer = ({ open, setOpen}) => {
 
@@ -85,6 +83,7 @@ const InfoDrawer = ({ open, setOpen}) => {
           currentUser={currentUser}
           handleNameChange={handleNameChange}
           handleClickName={handleClickName} />
+          
         <Mid />
 
         <About
