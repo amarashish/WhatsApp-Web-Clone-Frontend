@@ -1,4 +1,4 @@
-import { getUsers, newMessage } from "../../Service/api.js";
+import { getUsers } from "../../Service/api.js";
 import { useState, useEffect, useContext } from "react";
 import { Box, Divider } from "@mui/material";
 import Conversation from "./Conversation.jsx";

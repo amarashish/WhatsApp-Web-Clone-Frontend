@@ -11,6 +11,27 @@ export const addUser = async (data)=>{
     }
 };
 
+export const addVerifier = async (data)=>{
+    try{
+        const response = await axios.post(`${BASE_URL}/addVerifier`, data);
+        console.log(response.data);///////
+
+    }catch(error){
+        console.log("Error while calling addVerifier API");
+    }
+}
+
+export const getVerifier = async (data) => {
+    try{
+        const response = await axios.post(`${BASE_URL}/getVerifier`, data);
+        console.log(response.data);///////
+        return response.data;
+    }catch(error){
+        console.log("Error while calling getVerifier API");
+
+    }
+}
+
 export const updateUser = async (data)=>{
     try{
         await axios.put(`${BASE_URL}/update`, data);

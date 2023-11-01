@@ -25,6 +25,7 @@ export default function BasicMenu({setOpenDrawer}) {
   }
   
   const handleLogoutClick = ()=>{
+    localStorage.clear();
     setAccount(null);
   }
 

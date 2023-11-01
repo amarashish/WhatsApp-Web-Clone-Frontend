@@ -2,9 +2,8 @@ import React, { useContext, useState } from "react";
 import { AccountContext } from "../../Context/AccountProvider.jsx";
 import PhoneInput from "react-phone-input-2";
 import 'react-phone-input-2/lib/style.css'
-
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
-import { addUser } from "../../Service/api";
+import { addUser, addVerifier } from "../../Service/api";
 import { auth } from "./firebase/firebaseAuth";
 import { Dialog } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
@@ -22,11 +21,13 @@ const PhoneSingIn = ({ click, setClick }) => {
     const sendOtp = async () => {
         document.getElementById('11').innerHTML = "Otp Sent!";
         document.getElementById('11').style.background = "black";
+
         try {
             setDisplay("block");
             const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {});
             const confirmation = await signInWithPhoneNumber(auth, phone, recaptcha);
             setUser(confirmation);
+
         } catch (error) {
             console.log(error.message);
         }
@@ -36,22 +37,22 @@ const PhoneSingIn = ({ click, setClick }) => {
         document.getElementById('13').innerHTML = "Verifying...";
         document.getElementById('13').style.background = "black";
         try {
-            await user.confirm(otp);
-
+            const response = await user.confirm(otp);
             const userInfo = {
                 sub: phone,
                 name: phone,
                 picture: "https://i.postimg.cc/vmVXqpdj/blank-profile-picture-wp.png",
                 email: "",
                 about: "Write something about yourself",
-                phone: phone
+                phone: phone,
             }
+
             const userFound = await addUser(userInfo);
-            if (userFound) {
-                setAccount(userFound.data);
-            } else {
-                setAccount(userInfo);
-            }
+            setAccount(userFound.data);
+
+            await addVerifier({sub: userInfo.sub, authToken: response.user.accessToken});
+            localStorage.setItem('authToken', response.user.accessToken);
+       
         } catch (error) {
             console.log("Could not verfity Otp ", error.message);
         }

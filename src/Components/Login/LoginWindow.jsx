@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import axios from "axios"
 import { useContext } from "react";
 import { AccountContext } from "../../Context/AccountProvider.jsx";
-import { addUser } from "../../Service/api.js";
+import { addUser, addVerifier } from "../../Service/api.js";
 
 const LoginWindow = () => {
 
@@ -12,18 +12,21 @@ const LoginWindow = () => {
   const googleLogin = useGoogleLogin({
     onSuccess: async tokenResponse => {
       try {
-        const data = await axios
-          .get('https://www.googleapis.com/oauth2/v3/userinfo', {
+        const data = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
             headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
-          })
-          .then(res => res.data);
+
+          }).then(res => res.data);
 
           const userInfo = Object.assign({}, 
             { sub: data.sub, name: data.name, picture: data.picture, email: data.email, about: "Write something about yourself", phone: ""}
-            );
+          );
 
         const user = await addUser(userInfo);
         setAccount(user.data);
+
+        const authToken = tokenResponse.access_token;
+        await addVerifier({sub: data.sub, authToken: authToken});
+        localStorage.setItem('authToken', authToken);
         
       } catch (error) {
         console.error("Error during login:", error.message);
