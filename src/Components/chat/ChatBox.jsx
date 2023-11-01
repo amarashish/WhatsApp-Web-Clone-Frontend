@@ -32,8 +32,9 @@ const ChatBox = () => {
     const sendText = async (e) => {
         if (e.key === "Enter") {
 
-            if(!file && message.length === 0) // to prevent sending empty message
+            if(!file && message.length === 0){ // to prevent sending empty message
                 return;
+            }
 
             let url = null;
             if (file) {
@@ -53,12 +54,12 @@ const ChatBox = () => {
             }
 
             socket.current.emit('sendMessage', currentMessage); //socket.io sendMessage
+            setNewMessageFlag(!newMessageFlag);
 
             setMessage("");
             setFile(null);
 
             await newMessage(currentMessage);
-            setNewMessageFlag(!newMessageFlag);
         }
     }
 

@@ -15,7 +15,16 @@ const UsersChat = ({ text }) => {
 
     const [users, setUsers] = useState([]);
 
+    const [incomingMessage, setIncomingMessage] = useState(false);
+    
     const { account, socket, activeUsers, setActiveUsers, newMessageFlag } = useContext(AccountContext);
+
+    useEffect(() => {
+        socket.current.on('getMessage', data => {
+            setIncomingMessage(!incomingMessage);
+        })
+    }, [incomingMessage, socket])
+
 
     // to get all the users stored in DB or based on the search.
     useEffect(() => {
@@ -25,19 +34,20 @@ const UsersChat = ({ text }) => {
 
             const filterData = response.filter((user) => user.name.toLowerCase().includes(text.toLowerCase()) && user.name !== account.name); 
             setUsers(filterData);
+
             }catch(error){
                 console.log("Could not connect to database");
             }
         };
         fetchData();
-    }, [text, account, activeUsers, newMessageFlag]);
+    }, [text, account, activeUsers, newMessageFlag, incomingMessage]);
 
     useEffect(() => {
         socket.current.emit('addUser', account);
         socket.current.on('getUsers', users => {
             setActiveUsers(users);
         })
-    }, [account])
+    }, [account, socket, setActiveUsers])
 
 
     return (

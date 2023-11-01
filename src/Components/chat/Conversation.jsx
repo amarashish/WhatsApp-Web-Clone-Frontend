@@ -10,12 +10,11 @@ const Logo = styled("img")({
     borderRadius: "50%"
 });
 
-
 const Conversation = ({ user }) => {
 
     const [message, setMessage] = useState({});
-
-    const { setPerson, account, newMessageFlag } = useContext(AccountContext);
+    
+    const {setPerson, account } = useContext(AccountContext);
 
     useEffect(() => {
         const getConversationDetails = async () => {
@@ -24,12 +23,13 @@ const Conversation = ({ user }) => {
         }
 
         getConversationDetails();
-    }, [newMessageFlag, user, account, message])
+    }, [account, user])
 
     const createUserChat = async () => {
         await setConversation({ senderId: account.sub, receiverId: user.sub }); //sequence
         setPerson(user);                                                       // matters
     }
+
     return (
         <Box onClick={createUserChat} style={{ display: "flex", justifyContent: "space-between", padding: "0 15px", cursor: "pointer" }}>
             <Box style={{ display: "flex" }}>
