@@ -89,8 +89,8 @@ const Message = ({ message }) => {
                                     <DescriptionIcon style={{ height: "45px", width: "45px", marginRight: "5px", color: "rgb(84, 101, 111)" }} />
                                     <Box style={{ display: "flex", flexDirection: "column", height: "60px", width: "250px", justifyContent: "center" }}>
                                         <Box>
-                                            <Typography style={{ color: "rgb(84, 101, 111)" }}>{name}</Typography>
-                                            <Typography style={{ color: "rgb(84, 101, 111)" }}>{name.split('.')[1].toUpperCase()} - {size} {unit}</Typography>
+                                            <Typography style={{ color: "rgb(84, 101, 111)", fontSize: "17px" }}>{name}</Typography>
+                                            <Typography style={{ color: "rgb(84, 101, 111)", fontSize: "10px", fontWeight: "600" }}>{name.split('.')[1].toUpperCase()} - {size} {unit}</Typography>
                                         </Box>
                                     </Box>
                                     {message.file &&
@@ -108,18 +108,18 @@ const Message = ({ message }) => {
                     </Sent>
                     :
                     <Received>
-                    <Box style={{ padding: "3px" }}>
+                        <Box style={{ padding: "3px" }}>
                             {type === "img" &&
                                 <img src={message.file} alt="" style={{ height: "250px", width: "250px", borderRadius: "6px" }} />
                             }
 
                             {type === "docx" &&
-                                <Box style={{ display: "flex", margin: "10px 0 0 0", padding: "10px", background: "rgb(249 249 249)", borderRadius: "10px", alignItems: "center" }}>
+                                <Box style={{ display: "flex", margin: "10px 0 0 0", padding: "10px", background: "rgb(215 238 197)", borderRadius: "10px", alignItems: "center" }}>
                                     <DescriptionIcon style={{ height: "45px", width: "45px", marginRight: "5px", color: "rgb(84, 101, 111)" }} />
                                     <Box style={{ display: "flex", flexDirection: "column", height: "60px", width: "250px", justifyContent: "center" }}>
                                         <Box>
-                                            <Typography style={{ color: "rgb(84, 101, 111)" }}>{name}</Typography>
-                                            <Typography style={{ color: "rgb(84, 101, 111)" }}>{name.split('.')[1].toUpperCase()} - {size} {unit}</Typography>
+                                            <Typography style={{ color: "rgb(84, 101, 111)", fontSize: "17px" }}>{name}</Typography>
+                                            <Typography style={{ color: "rgb(84, 101, 111)", fontSize: "10px", fontWeight: "600" }}>{name.split('.')[1].toUpperCase()} - {size} {unit}</Typography>
                                         </Box>
                                     </Box>
                                     {message.file &&

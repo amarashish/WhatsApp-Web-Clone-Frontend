@@ -25,7 +25,7 @@ export default function BasicMenu({setOpenDrawer}) {
   }
   
   const handleLogoutClick = ()=>{
-    localStorage.clear();
+    localStorage.removeItem('authToken');
     setAccount(null);
   }
 
