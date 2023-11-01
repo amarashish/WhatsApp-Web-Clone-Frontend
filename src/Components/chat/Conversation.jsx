@@ -19,12 +19,12 @@ const Conversation = ({ user }) => {
 
     useEffect(() => {
         const getConversationDetails = async () => {
-            const data = await getConversation({ senderId: account.sub, receiverId: user.sub });
+            const data = await getConversation({ senderId: account.sub, receiverId: user.sub }); 
             setMessage({ text: data?.message, timeStamp: data?.updatedAt });
         }
 
         getConversationDetails();
-    }, [newMessageFlag])
+    }, [newMessageFlag, user, account, message])
 
     const createUserChat = async () => {
         await setConversation({ senderId: account.sub, receiverId: user.sub }); //sequence

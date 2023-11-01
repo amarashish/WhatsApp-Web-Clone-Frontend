@@ -1,4 +1,4 @@
-import { getUsers } from "../../Service/api.js";
+import { getUsers, newMessage } from "../../Service/api.js";
 import { useState, useEffect, useContext } from "react";
 import { Box, Divider } from "@mui/material";
 import Conversation from "./Conversation.jsx";
@@ -15,7 +15,7 @@ const UsersChat = ({ text }) => {
 
     const [users, setUsers] = useState([]);
 
-    const { account, socket, activeUsers, setActiveUsers } = useContext(AccountContext);
+    const { account, socket, activeUsers, setActiveUsers, newMessageFlag } = useContext(AccountContext);
 
     // to get all the users stored in DB or based on the search.
     useEffect(() => {
@@ -30,7 +30,7 @@ const UsersChat = ({ text }) => {
             }
         };
         fetchData();
-    }, [text, account, activeUsers]);
+    }, [text, account, activeUsers, newMessageFlag]);
 
     useEffect(() => {
         socket.current.emit('addUser', account);
