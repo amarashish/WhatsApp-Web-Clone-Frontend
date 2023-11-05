@@ -19,7 +19,7 @@ const Conversation = ({ user }) => {
     useEffect(() => {
         const getConversationDetails = async () => {
             const data = await getConversation({ senderId: account.sub, receiverId: user.sub }); 
-            setMessage({ text: data?.message, timeStamp: data?.updatedAt });
+            setMessage({ text: data?.message, timeStamp: data?.updatedAt, createdAt: data?.createdAt });
         }
 
         getConversationDetails();
@@ -40,7 +40,7 @@ const Conversation = ({ user }) => {
                     <Typography variant="h6">{user.name}</Typography>
                     {
                         message &&
-                        <Typography >{!message.text ? "Media" : message.text}</Typography>
+                        <Typography >{!message.text && message.createdAt !== message.updatedAt ? "Media" : message.text}</Typography>
                     }
                 </Box>
             </Box>

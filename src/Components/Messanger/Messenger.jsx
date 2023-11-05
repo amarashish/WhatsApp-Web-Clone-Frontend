@@ -5,10 +5,11 @@ import { Box } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { AccountContext } from "../../Context/AccountProvider";
 import { getVerifier } from "../../Service/api";
-import {LinearProgress} from "@mui/material";
+import { LinearProgress } from "@mui/material";
+import Loading from "../Loading";
 
 const Messenger = () => {
-  const { account, setAccount } = useContext(AccountContext);
+  const { account, setAccount, isLoading } = useContext(AccountContext);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,23 +27,29 @@ const Messenger = () => {
     if (localStorage?.authToken) {
       getUserData();
     } else {
-      setLoading(false); 
+      setLoading(false);
     }
   }, []);
 
   return (
-    <Box>
-      {loading ? (
-        <LinearProgress variant="determinate"/> 
-      ) : (
-        <>
-          {account ? <Box className="header-type2" /> : <Branding />}
-          <Box style={{ backgroundColor: "#eae6df", backgroundImage: "linear-gradient(180deg, #eae6df, #d1d7db)", minHeight: "85vh" }}>
-            {!account ? <LoginDialog /> : <ChatDailog />}
-          </Box>
-        </>
-      )}
-    </Box>
+
+    isLoading ? (
+      <Loading />
+    ) : (
+      <Box>
+        {loading ? (
+          <LinearProgress variant="determinate" />
+        ) : (
+          <>
+            {account ? <Box className="header-type2" /> : <Branding />}
+            <Box style={{ backgroundColor: "#eae6df", backgroundImage: "linear-gradient(180deg, #eae6df, #d1d7db)", minHeight: "85vh" }}>
+              {!account ? <LoginDialog /> : <ChatDailog />}
+            </Box>
+          </>
+        )}
+
+      </Box>
+    )
   );
 };
 

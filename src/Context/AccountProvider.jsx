@@ -8,11 +8,12 @@ export const AccountContext = createContext();
 
 const AccountProvider = ({ children }) => {
 
-    
-    const [account, setAccount ] = useState(null);
+
+    const [account, setAccount] = useState(null);
     const [person, setPerson] = useState(null);
     const [activeUsers, setActiveUsers] = useState([]);
     const [newMessageFlag, setNewMessageFlag] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
 
     const socket = useRef();
@@ -20,7 +21,7 @@ const AccountProvider = ({ children }) => {
     useEffect(() => {
         socket.current = io(SOCKET_URL);
     }, [])
-    
+
     return (
         <AccountContext.Provider value={{
             account,
@@ -31,7 +32,9 @@ const AccountProvider = ({ children }) => {
             activeUsers,
             setActiveUsers,
             newMessageFlag,
-            setNewMessageFlag
+            setNewMessageFlag,
+            isLoading,
+            setIsLoading
         }}>
             {children}
         </AccountContext.Provider>

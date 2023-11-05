@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 const PhoneSingIn = ({ click, setClick }) => {
 
-    const { setAccount } = useContext(AccountContext);
+    const { setAccount, setIsLoading } = useContext(AccountContext);
 
     const [phone, setPhone] = useState("");
     const [user, setUser] = useState("");
@@ -36,6 +36,8 @@ const PhoneSingIn = ({ click, setClick }) => {
     const verifyOtp = async () => {
         document.getElementById('13').innerHTML = "Verifying...";
         document.getElementById('13').style.background = "black";
+
+        setIsLoading(true);
         try {
             const response = await user.confirm(otp);
             const userInfo = {
@@ -49,10 +51,11 @@ const PhoneSingIn = ({ click, setClick }) => {
 
             const userFound = await addUser(userInfo);
             setAccount(userFound.data);
+            setIsLoading(false);
 
-            await addVerifier({sub: userInfo.sub, authToken: response.user.accessToken});
+            await addVerifier({ sub: userInfo.sub, authToken: response.user.accessToken });
             localStorage.setItem('authToken', response.user.accessToken);
-       
+
         } catch (error) {
             console.log("Could not verfity Otp ", error.message);
         }
