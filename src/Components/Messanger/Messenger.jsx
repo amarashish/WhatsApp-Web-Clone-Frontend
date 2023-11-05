@@ -5,7 +5,6 @@ import { Box } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { AccountContext } from "../../Context/AccountProvider";
 import { getVerifier } from "../../Service/api";
-import { LinearProgress } from "@mui/material";
 import Loading from "../Loading";
 
 const Messenger = () => {
@@ -38,7 +37,7 @@ const Messenger = () => {
     ) : (
       <Box>
         {loading ? (
-          <LinearProgress variant="determinate" />
+           <Loading />
         ) : (
           <>
             {account ? <Box className="header-type2" /> : <Branding />}
@@ -47,7 +46,6 @@ const Messenger = () => {
             </Box>
           </>
         )}
-
       </Box>
     )
   );
